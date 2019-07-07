@@ -3,7 +3,7 @@
 ## Descrição:
 
 ##### Trabalhos incompletos;  
-##### Realizado em: 2018/2019 (2º ano);  
+##### Realizado em: 2018/19 (2º ano);  
 
 ## Notas:
 ##### Trabalho 1: 13 Valores;
