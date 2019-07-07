@@ -1,6 +1,7 @@
 # EDA1
 ## Conteúdo:
-##### Trabalhos com base nas Estruturas de Dados e Algoritmos leccionados nas aulas.
+##### Trabalhos com base nas Estruturas de Dados e Algoritmos leccionados nas aulas.  
+##### Realizado em: 2018/2019 (2º ano).
 
 ## Notas:
 ##### -Trabalho 1: 16 Valores
