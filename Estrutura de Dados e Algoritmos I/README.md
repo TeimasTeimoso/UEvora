@@ -1,5 +1,5 @@
 # EDA1
-## Conteúdo:
+## Descrição:
 ##### Trabalhos com base nas Estruturas de Dados e Algoritmos leccionados nas aulas.  
 ##### Realizado em: 2018/2019 (2º ano).
 
