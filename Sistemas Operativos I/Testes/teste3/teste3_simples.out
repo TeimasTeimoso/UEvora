@@ -1,0 +1,11 @@
+  0 |      new |         
+  1 |      run |      new
+  2 |      run |    ready
+  3 |      run |    ready
+  4 |      run |    ready
+  5 |    ready |      run
+  6 |    ready |      run
+Memory Acess Violation (PI: 2)
+  7 |      run |     exit
+  8 |      run |         
+  9 |     exit |         
