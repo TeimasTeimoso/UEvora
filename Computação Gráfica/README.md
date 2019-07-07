@@ -1,5 +1,10 @@
 # Computação Gráfica 
 
 ## Descrição:
-##### Realizado em: 2018/19 (2º ano);  
-##### Nota do Trabalho 2D: 16 Valores;
+##### * Introdução à computação gráfica 2D e 3D em contexto web;
+##### * Realizado em: 2018/19 (2º ano); 
+##### *Linguagem de Programação: Javascript;
+##### * Neste repositório só se encontra o trabalho 2D; 
+
+## Avaliação:
+##### * Nota do Trabalho 2D: 16 Valores;
