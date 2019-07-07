@@ -6,5 +6,5 @@
 ##### * Linguagem de Programação: Python;
 
 ## Avaliação:
-##### *User Guess: 13 Valores;
-##### *Computer Guess: 16 Valores.
+##### * User Guess: 13 Valores;
+##### * Computer Guess: 16 Valores.
