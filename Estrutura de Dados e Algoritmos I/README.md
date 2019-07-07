@@ -4,7 +4,7 @@
 ##### Realizado em: 2018/2019 (2º ano).
 
 ## Notas:
-##### -Trabalho 1: 16 Valores
+##### -Trabalho 1: 18 Valores
 ##### -Trabalho 2: 16 Valores
 ##### -Trabalho 3: 14 Valores
 ##### -Trabalho 4: 20 Valores
