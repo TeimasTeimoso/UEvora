@@ -1,4 +1,4 @@
-# Trabalho de ASC I
+# ASC I
 
 ## Descrição:
 
