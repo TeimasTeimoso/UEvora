@@ -1,0 +1,33 @@
+1. Algarismos
+Problema
+
+Para poder escrever uma tabela de números, com os números alinhados, é preciso saber quantos algarismos são necessários para representar cada número, para saber quantos espaços pôr antes do número (ou depois, se for para os alinhar à esquerda).
+Tarefa
+
+Faça um programa que leia, do seu standard input (teclado), um valor inteiro e que escreva, no seu standard output (consola), o número de algarismos necessários para representar esse número.
+Entrada (Input)
+
+A entrada do programa consistirá num único valor inteiro, N.
+Limites
+
+-231 + 1 ≤ N ≤ 231 - 1 		Valor inteiro
+Saída (Output)
+
+A saída do programa consistirá numa única linha, contendo o número de algarismos necessários para representar o valor lido.
+Exemplo 1
+Entrada
+
+123
+
+Saída
+
+3
+
+Exemplo 2
+Entrada
+
+-7
+
+Saída
+
+1
