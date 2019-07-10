@@ -6,4 +6,4 @@
 
 ## Avaliação
 ##### * Pré-Qualificação: 1 Valor;
-##### * Trabalho Final 12 Valores;
+##### * Trabalho Final: 12 Valores;
