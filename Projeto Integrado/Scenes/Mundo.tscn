@@ -1,0 +1,138 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://images/black.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/keys.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/inventory.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Enemy1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Items/dagger.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Items/potions.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Items/sword2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Items/swordBasic.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Items/key.tscn" type="PackedScene" id=12]
+
+[node name="Mundo" type="Node2D" index="0"]
+
+position = Vector2( -3.56006, -2.53491 )
+scale = Vector2( 2.48935, 2.48935 )
+_sections_unfolded = [ "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Player" parent="." index="0" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 883.985, 460.691 )
+scale = Vector2( 0.602429, 0.581039 )
+z_index = 1
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Node2D" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( -16.1252, -2.08368 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="campo2" type="TextureRect" parent="CanvasLayer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -2.0
+margin_top = -6.0
+margin_right = 1938.0
+margin_bottom = 1115.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 0
+
+[node name="keys" parent="CanvasLayer" index="1" instance=ExtResource( 4 )]
+
+margin_left = 210.0
+margin_top = 105.0
+margin_right = 218.0
+margin_bottom = 145.0
+
+[node name="inventory" parent="CanvasLayer" index="2" instance=ExtResource( 5 )]
+
+visible = false
+margin_left = -883.901
+margin_top = -462.876
+margin_right = -883.901
+margin_bottom = -462.876
+
+[node name="GUI" parent="CanvasLayer" index="3" instance=ExtResource( 6 )]
+
+margin_left = -29.0
+margin_top = -20.0
+margin_right = 519.0
+margin_bottom = 73.0
+_sections_unfolded = [ "Size Flags", "custom_constants" ]
+
+[node name="Enemy1" parent="." index="3" instance=ExtResource( 7 )]
+
+position = Vector2( 425.651, 959.404 )
+_sections_unfolded = [ "Z Index", "collision" ]
+
+[node name="Enemy3" parent="." index="4" instance=ExtResource( 7 )]
+
+position = Vector2( 599.592, 944.541 )
+_sections_unfolded = [ "Z Index", "collision" ]
+
+[node name="Area2D" parent="." index="5" instance=ExtResource( 8 )]
+
+position = Vector2( 171.603, 140.682 )
+
+[node name="potions2" parent="." index="6" instance=ExtResource( 9 )]
+
+position = Vector2( 570.313, 106.095 )
+
+[node name="Area2D2" parent="." index="7" instance=ExtResource( 10 )]
+
+position = Vector2( 883.517, 137.8 )
+
+[node name="potions" parent="." index="8" instance=ExtResource( 9 )]
+
+position = Vector2( 1280.61, 681.647 )
+
+[node name="Area2D3" parent="." index="9" instance=ExtResource( 11 )]
+
+position = Vector2( 555.243, 971.796 )
+
+[node name="potions3" parent="." index="10" instance=ExtResource( 9 )]
+
+position = Vector2( 1587.75, 1022.77 )
+
+[node name="potions4" parent="." index="11" instance=ExtResource( 9 )]
+
+position = Vector2( 1596.9, 1234.5 )
+
+[node name="Enemy2" parent="." index="12" instance=ExtResource( 7 )]
+
+position = Vector2( 2846.08, 921.034 )
+
+[node name="Area2D4" parent="." index="13" instance=ExtResource( 12 )]
+
+position = Vector2( 908.635, 515.293 )
+
+[connection signal="health_changed" from="Player/Health" to="CanvasLayer/GUI" method="_on_Health_health_changed"]
+
+
+[editable path="Player"]
