@@ -129,24 +129,6 @@ void print_todos(int instante, list *lista)
     printf("\n");
 }
 
-/*
-void print_mem(int instante, list *lista, int mem[MEMSIZE])
-{
-    node *current = lista->head;
-
-    printf("%d\n", instante);
-    while(current != NULL)
-    {
-        printf("%3d ", current->element->P_ID);
-        for(int i = 0; i<10; i++)
-            printf(" | %3d", mem[current->element->mem_start+i]);
-        printf("\n");
-        current = current->next;
-    }
-    printf("\n");
-}
-*/
-
 // incrementa a variavel do tempo que o processo esta no estado
 void mais_tempo(list *estado)
 {
