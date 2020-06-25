@@ -99,7 +99,7 @@ public class StockDeProdutosClient extends UnicastRemoteObject implements Client
 
                     int r = sp.registarNecessidade(produto, this.getClientId());
                     sp.registarClientEmEspera(this.clientId, this);
-                    System.out.println("Necessidade registada com o ID: " + Integer.toString(r));
+                    System.out.println("Necessidade regastada com o ID: " + Integer.toString(r));
                     break;
 
                 default:
