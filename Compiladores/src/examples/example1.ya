@@ -1,0 +1,20 @@
+a : int = 0;
+b : string = "ola";
+c,d : int;
+
+f (b: int) : void {
+  print(b);
+};
+
+z (c: int) : int {
+ return d;
+};
+
+main () : void {
+  a : bool = true;
+
+   if a then {
+    b = "hello, world";
+    f(b);
+  };
+};
