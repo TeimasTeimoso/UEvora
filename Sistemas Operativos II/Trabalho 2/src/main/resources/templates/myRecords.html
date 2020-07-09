@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/header :: header">
+        
+    </head>
+
+    <body>
+        <script type="text/javaScript" src="/js/deleteOccupation.js"></script>
+        <nav th:replace="fragments/navigation :: navigation"> </nav>
+
+        <table id = "records" class="table">
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Hora</th> 
+                    <th>Supermercado</th>
+                    <th>Localidade</th>
+                    <th>Eliminar Registo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="record : ${records}">
+                    <tr>
+                        <td th:text="${record.getDay()}"></td>
+                        <td th:text="${record.getHours()}"></td>
+                        <td th:text="${record.getCorpName()}"></td>
+                        <td th:text="${record.getLocat()}"></td>
+                        <td><button type="button" class="rmvBtn btn btn-danger" th:value="${record.getEntryId()}">Remover</button></td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </body>
+
+</html>

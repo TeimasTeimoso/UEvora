@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      <head th:replace="fragments/header :: header">
+    
+      </head>
+    <body class="text-center">
+        <nav th:replace="fragments/navigation :: navigation"></nav>
+        <h3>Registar Utilizador</h3>
+        <form th:action="@{/registar}" method="post" th:object="${userForm}">
+            <!--As mensagens de erro não tão a aparecer-->
+            <div>
+                <label> User Name: </label>
+                <input th:field="*{userName}" type="text"/>
+                <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">userNameError</span>
+                <div th:if="${userExists == true}" class="alert alert-danger" role="alert">
+                    <p> Já existe um utilizador com nome "[[${loginName}]]"!</p>
+                </div>
+            </div>
+
+            <!--As mensagens de erro não tão a aparecer-->
+            <div class="form-group">
+                <label> Password: </label>
+                <input th:field="*{password}" type="password"/>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">passwordError</span>
+            </div>
+
+            <div><input type="submit" class="btn btn-primary" value="Registar"/></div>
+        </form>
+    </body>
+</html>
