@@ -1,5 +1,7 @@
 # Licenciatura-UEvora
 
+Trabalhos produzidos durante a licenciatura.
+
 
 | Unidade Curricular                            |   Semestre        |   Nota Final  |    
 |-----------------------------------------------|:-----------------:|:-------------:|
