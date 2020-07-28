@@ -7,7 +7,7 @@ src/main/resources/application.properties
 3. **_createdb -O so2user trabalho2_** ;
 4. **_psql trabalho2_**
 5. **_alter user so2user with password 'qwerty'_** ;
-6. Após executar estes comandos pode sair do ambiente postgres usando 2 vezes _Ctrl+D_.
+6. Após executar estes comandos pode sair do ambiente postgres usando 2 vezes _Ctrl+D_;
 7. Por último execute o comando **_psql trabalho2 -U so2user -h localhost \< dump.sql_** 
 
 ## Compilar a aplicação

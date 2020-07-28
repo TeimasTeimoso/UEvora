@@ -2,7 +2,7 @@
 #define SIZE 211
 
 
-//typedef struct dict *ST_Data;
+// typedef struct dict *ST_Data;
 typedef struct hash_cell cell;
 typedef struct hashtable hash;
 
