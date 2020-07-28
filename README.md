@@ -15,7 +15,7 @@ Trabalhos produzidos durante a licenciatura.
 | Inteligência Artificial                       |   6º Semestre     |       17      |
 | Linguagens de Programação                     |   6º Semestre     |       17      |
 | Metodologias e Desenvolvimento de Software    |   4º Semestre     |       15      |
-| Programação Declarativa                       |   5º Semestre     |               |
+| Programação Declarativa                       |   5º Semestre     |       12      |
 | Programação I                                 |   1º Semestre     |       14      |
 | Programação II                                |   2º Semestre     |       15      |
 | Redes de Computadores                         |   5º Semestre     |       16      |
