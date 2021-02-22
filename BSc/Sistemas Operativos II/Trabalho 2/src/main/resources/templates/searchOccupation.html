@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/header :: header">
+
+    </head>
+
+    <body>
+        <script type="text/javaScript" src="/js/getLocationByCorp.js"></script>
+        <script type="text/javaScript" src="/js/getOccupation.js"></script>
+        <nav th:replace="fragments/navigation :: navigation"></nav>
+
+        <div class="container formAlign">
+            <form action="" th:object="${occupation}" method="get" id="searchForm" class="form-group">
+            
+                <label for="">Empresa:</label>
+                <select id="corpId" th:field="*{id}">
+                    <option value="" selected="selected"></option>
+                    <option th:each="corp : ${corps}"
+                    th:value="${corp.id}"
+                    th:text="${corp.name}"></option>
+                </select>
+    
+                <br>
+    
+                <label>Localização:</label>
+                <select id="storeLocation" th:field="*{locat}">
+                    <option value="" placeholder="Ex:Horta das Figueiras"></option>
+                </select>
+    
+                <br> 
+    
+                <input type="submit" value="Procurar" id="searchBtn" class="btn btn-primary"/>         
+            </form>
+            
+            <p id="occupationResult"></p> 
+        
+            <!-- distancia em linha reta -->
+            <!-- mostra a distancia entre a posicao atual e a loja selecionada -->
+            <button id="getDistBtn" style="display: none;" onclick="mostrarDist()">Ver distancia</button>
+            <p id="distancia"></p>
+    
+    
+            <div id="mapid"></div>
+        </div>
+
+        
+
+ 
+        <script type="text/javaScript" src="/js/mapInfo.js"></script>
+
+    </body>
+</html>

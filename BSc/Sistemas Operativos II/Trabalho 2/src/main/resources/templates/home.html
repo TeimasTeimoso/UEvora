@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/header :: header"></head>
+
+    <body>
+        <nav th:replace="fragments/navigation :: navigation"></nav>
+        <h1 th:inline="text">Seja bem vindo [[${#httpServletRequest.remoteUser}]]!</h1>
+    </body>
+</html>

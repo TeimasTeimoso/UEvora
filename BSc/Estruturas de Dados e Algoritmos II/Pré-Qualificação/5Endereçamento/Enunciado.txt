@@ -1,0 +1,81 @@
+Problema 5
+5. Encaminhamento
+Problema
+
+Na Internet, as comunicações consistem em pacotes, cujo destino é identificado através de um endereço. Um endereço Internet IPv4 tem a forma a.b.c.d, onde a, b, c e d são valores entre 0 e 255.
+
+No caminho até ao seu destino, um pacote passa por uma série de equipamentos, que o vão reencaminhando. Para isso, cada um desses equipamentos possui uma tabela de encaminhamento (routing table) que, dada a rede de destino do pacote, indica qual a interface de rede pela qual o pacote deve ser reenviado. Se o endereço de destino do pacote é a.b.c.d, o equipamento que tem esse endereço está na rede a.b.c.0. Estes pares (rede, interface) são conhecidos como routes.
+
+Por exemplo, a tabela de encaminhamento seguinte contém duas routes. A primeira indica que os pacotes destinados à rede 193.137.179.0 devem ser enviados para a interface 0, e a segunda que aqueles destinados à rede 193.136.216.0 devem ser enviados para a interface 1.
+
+    Rede 	Interface
+    193.137.179.0 	0
+    193.136.216.0 	1
+
+Para que as tabelas de routing não sejam muito grandes, elas podem incluir a chamada default route, que indica a interface através da qual devem ser enviados os pacotes cuja rede não aparece em nenhuma das outras routes na tabela. Uma default route é uma route em que a rede é a 0.0.0.0.
+
+Se uma tabela não tiver uma route para uma determinada rede, nem contiver uma default route, o pacote não poderá ser reencaminhado e será rejeitado.
+Tarefa
+
+Faça um programa que, dadas as routes de uma tabela de encaminhamento, determine qual a interface por onde serão encaminhados pacotes de rede, a partir do endereço IPv4 a que se destinam.
+Entrada (Input)
+
+A entrada do programa é lida do seu standard input.
+
+A primeira linha da entrada do programa consiste num inteiro, R, que representa o número de routes na tabela. As R linhas seguintes contêm, cada uma, uma route, constituída pela identificação de uma rede, no formato a.b.c.0, e pelo número de uma interface, separados por um espaço.
+
+As restantes linhas da entrada do programa, em número indeterminado, contêm, cada uma, um endereço IPv4, no formato a.b.c.d.
+Limites
+
+1 ≤ R ≤ 100000 		Número de routes na tabela
+0 ≤ a, b, c, d ≤ 255 		Componentes dos endereços
+0 ≤ I ≤ 255 		Número de uma interface de rede
+1 ≤ P ≤ 100000 		Número de endereços
+Saída (Output)
+
+Por cada linha lida com um endereço IPv4, o programa escreverá uma linha com o número da interface a usar para o encaminhamento de um pacote destinado ao endereço indicado, de acordo com as routes na tabela. Quando nenhuma das routes na tabela for aplicável, o programa escreverá uma linha com a frase no route.
+
+A saída do programa será escrita no seu standard output.
+Exemplo 1
+Entrada
+
+2
+193.137.179.0 0
+193.136.216.0 1
+193.137.179.82
+193.136.216.1
+193.136.216.21
+193.137.179.81
+193.137.178.232
+
+Saída
+
+0
+1
+1
+0
+no route
+
+Exemplo 2
+Entrada
+
+4
+193.137.179.0 1
+193.136.216.0 1
+0.0.0.0 5
+193.137.178.0 1
+193.137.179.82
+193.136.216.1
+193.136.216.21
+193.137.179.81
+193.137.178.232
+193.137.196.247
+
+Saída
+
+1
+1
+1
+1
+1
+5

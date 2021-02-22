@@ -1,0 +1,20 @@
+? 000100
++ 000100
+200000000 900000000
+20
+Conservador
+Moderado
+? 000100
++ 000100
+200000000 900000000
+23
+Conservador
+Moderado, alto na Primavera
+? 000100
+- 000100
+? 000100
++ 003200
+222222222 999999999
+30
+Extrema-esquerda
+Variado compulsivo

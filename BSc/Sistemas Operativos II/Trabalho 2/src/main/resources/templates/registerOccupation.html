@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/header :: header">
+
+    </head>
+
+    <body>
+        <script type="text/javaScript" src="/js/getLocationByCorp.js"></script>
+        <script type="text/javaScript" src="/js/postOccupation.js"></script>
+        <!--              
+        <script type="text/javascript">
+            $(document).ready(function() {
+        
+                $('#a').change(function() {
+                    var categoryId = $(this).val();
+                    $.ajax({
+                        type: 'GET',
+                        url: '/user/localizacao/' + categoryId,
+                        success:function(result) {
+                            var result = JSON.parse(result);
+                            var s = '';
+                            for(var i = 0; i < result.length; i++) {
+                                s += '<option value="' + result[i] + '">' + result[i] + '</option>';
+                            }
+                            $('#b').html(s);
+                        }
+                    })
+                });
+        
+            });
+        </script>
+        -->
+        <nav th:replace="fragments/navigation :: navigation"></nav>
+        
+
+        <h2>Registar Ocupação</h2>
+
+
+        <div class="container formAlign">
+            <form id="occupationForm" action="" th:object="${occupation}" method="post" class="form-group">
+                <label for="">Empresa:</label>
+                <select id="corpId" th:field="*{id}">
+                    <option value=""></option>
+                    <option th:each="corp : ${corps}"
+                            th:value="${corp.id}"
+                            th:text="${corp.name}"></option>
+                </select>
+    
+                <br>
+
+                <label>Localização:</label>
+                <select id="storeLocation" th:field="*{locat}">
+    
+                </select>
+    
+                <br>
+
+                <label>Nivel de Ocupação:</label>
+                <select id="occupationLevel" th:field="*{level}">
+                    <option value="1. vazio ou com mínima lotação">1. vazio ou com mínima lotação</option>
+                    <option value="2. com pessoas, mas espaço suficiente">2. com pessoas, mas espaço suficiente</option>
+                    <option value="3. muito cheio">3. muito cheio</option>
+                    <option value="4. muito cheio e com fila de espera">4. muito cheio e com fila de espera</option>
+                </select>
+             
+                <br>
+
+                <input type="submit" value="Submit" id="submitBtn" class="btn btn-primary"/>            
+            </form>
+    
+            <p id="requestResponse"></p>
+        </div>
+
+
+    </body>
+</html>

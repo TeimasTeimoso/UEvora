@@ -1,0 +1,74 @@
+2. Jogo dos feijões
+Problema
+
+O Jogo dos Feijões é jogado por dois jogadores que retiram, alternadamente, um montinho (completo) de feijões de uma das extremidades de uma sequência de montinhos de feijões. No início, há um número par de montinhos de feijões, cada um com uma quantidade diferente de feijões. O jogo acaba quando é retirado o último montinho de feijões e o vencedor é o jogador que conseguiu acumular mais feijões no decorrer do jogo. Se os dois jogadores tiverem retirado o mesmo número de feijões, há empate.
+
+O Alex e a Bela usam estratégias diferentes. O Alex retira sempre o monte com mais feijões. A estratégia da Bela é mais elaborada: começa por retirar o monte com menos feijões; na sua segunda jogada, escolhe o monte com mais feijões; na sua terceira jogada, volta a retirar o monte com menos feijões; e assim sucessivamente, alternando entre o monte menor e o maior. O Alex é sempre o primeiro a jogar, porque é o mais novo.
+
+Por exemplo, se a sequência inicial tiver seis montes, com 6, 2, 3, 1, 12 e 5 feijões, por esta ordem, as jogadas do Alex e da Bela são as seguintes:
+
+    O Alex poderia retirar o monte com 6 feijões ou o monte com 5 feijões. Como ele escolhe sempre o monte maior, retira o que tem 6 feijões.
+    A Bela começa sempre a retirar o monte com menos feijões. Sendo 2 < 5, retira o monte com 2 feijões.
+    Depois, o Alex retira o monte com 5 feijões (porque 5 > 3).
+    Na jogada seguinte, a Bela escolhe o monte maior, que tem 12 feijões.
+    Quando já só há dois montes, o Alex retira o que é composto por 3 feijões.
+    Por fim, a Bela retira o único monte que resta, que tem apenas 1 feijão. 
+
+Este jogo é ganho pela Bela, que acumula 15 feijões (2 + 12 + 1), dado que o Alex só arrecada 14 feijões (6 + 5 + 3).
+Tarefa
+
+Escreva um programa que, dada a sequência inicial de montes de feijões, calcula o número de feijões acumulados por cada jogador, indicando se há empate ou quem é o vencedor.
+Entrada (Input)
+
+A primeira linha tem um número inteiro par, N, que é o número de montes de feijões quando o jogo começa. A segunda linha é composta por N números inteiros, n1 n2 ... nN, que indicam quantos feijões existem em cada monte da sequência. Nunca há dois montes com a mesma quantidade de feijões.
+Limites
+
+2 ≤ N ≤ 100 		Número de montes de feijões
+1 ≤ ni ≤ 200, 1 ≤ i ≤ N 		Número de feijões no monte i
+Saída (Output)
+
+Uma única linha, cuja forma depende dos números de feijões acumulados pelo Alex e pela Bela no fim do jogo, denotados por A e B, respectivamente. A linha tem a forma:
+
+    Alex ganha com A contra B, se A > B;
+    Bela ganha com B contra A, se B > A;
+    Alex e Bela empatam a A, se A = B. 
+
+Exemplo 1
+Entrada
+
+6
+6 2 3 1 12 5
+
+Saída
+
+Bela ganha com 15 contra 14
+
+Exemplo 2
+Entrada
+
+2
+2 5
+
+Saída
+
+Alex ganha com 5 contra 2
+
+Exemplo 3
+Entrada
+
+8
+6 5 16 17 7 18 10 1
+
+Saída
+
+Alex e Bela empatam a 40
+
+Exemplo 4
+Entrada
+
+10
+1 3 6 8 10 12 4 9 5 2
+
+Saída
+
+Alex ganha com 31 contra 29

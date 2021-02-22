@@ -1,0 +1,8 @@
+
+
+main () : void {
+    i : int = 3;
+    while i <= n do {
+        i : int;
+    };
+};
