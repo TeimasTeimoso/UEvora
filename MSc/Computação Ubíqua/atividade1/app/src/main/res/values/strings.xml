@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">Hello World (Partially)</string>
+    <string name="author_name">Author: Ruben Teimas</string>
+</resources>

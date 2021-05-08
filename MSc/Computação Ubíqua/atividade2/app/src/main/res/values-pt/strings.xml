@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Contador</string>
+    <string name="author_name">Autor: Ruben Teimas</string>
+    <string name="start_message">Iniciar</string>
+    <string name="remaining_time">Faltam %d segundos.</string>
+    <string name="finished">Terminou!</string>
+</resources>
