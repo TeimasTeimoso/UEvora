@@ -1,10 +1,9 @@
-package pt.uevora.di.timer
+package pt.uevora.di.atividade5
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.TextView
-import java.util.logging.Logger
+import androidx.appcompat.app.AppCompatActivity
 
 class CounterActivity : AppCompatActivity() {
 
@@ -17,7 +16,7 @@ class CounterActivity : AppCompatActivity() {
     }
 
     private fun startCountDownTimer(time: Long) {
-        timer = object: CountDownTimer(time, 1000) {
+        timer = object : CountDownTimer(time, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 untilFinished = millisUntilFinished
@@ -44,4 +43,5 @@ class CounterActivity : AppCompatActivity() {
 
         timer.cancel()
     }
+
 }

@@ -1,12 +1,9 @@
 <resources>
-    <string name="app_name">Counter</string>
-    <string name="author_name">Author: Ruben Teimas</string>
-    <string name="start_message">Start</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="remaining_time">There are %d seconds remaining.</string>
-    <string name="finished">Finished!</string>
-    <string name="hint_username">Your username goes in here</string>
-    <string name="hint_password">Your username goes in here</string>
-    <string name="authentication">Authenticate</string>
+    <string name="app_name">BasicApp</string>
+    <string name="hint_username">Your username goes here</string>
+    <string name="hint_password">Your password goes here</string>
+    <string name="save_auth_txt">Save my credentials</string>
     <string name="invalid_creds">Invalid credentials!</string>
+    <string name="remaining_time">%d seconds missing!</string>
+    <string name="finished">Finished!</string>
 </resources>

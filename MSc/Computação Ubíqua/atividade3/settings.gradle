@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Improved timer"
+rootProject.name = "atividade5"

@@ -1,4 +1,4 @@
-package pt.uevora.di.timer
+package pt.uevora.di.atividade5
 
 import org.junit.Test
 
