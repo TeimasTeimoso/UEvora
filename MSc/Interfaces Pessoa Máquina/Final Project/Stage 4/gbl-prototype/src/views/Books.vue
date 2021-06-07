@@ -1,4 +1,5 @@
 <template>
+    <h1>Popular books</h1>
     <BookItem cover="ricardo_reis.jpeg" name='O Ano da Morte de Ricardo Reis' author='José Saramago' year=1984 description=' Em Camões, o movimento é da terra para o mar; no livro de Saramago temos Ricardo Reis a regressar a Portugal por mar. É substituído o movimento épico da partida. Mais uma vez, a história na escrita de Saramago. E as relações entre a vida e a morte. Ricardo Reis chega a Lisboa em finais de Dezembro e Fernando Pessoa morreu a 30 de Novembro. Ricardo Reis visita-o ao cemitério. Um tempo complexo. O fascismo consolida-se em Portugal.'/>
     <br>
     <br>
@@ -18,6 +19,11 @@ export default {
 
 <style>
 body {
-    background-color: lightblue;
+    background-color: #dfe3eb;
+}
+
+h1 {
+    text-align: left;
+    text-decoration: underline;
 }
 </style>
