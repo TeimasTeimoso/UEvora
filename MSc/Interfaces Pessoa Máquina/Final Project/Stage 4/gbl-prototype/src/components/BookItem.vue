@@ -2,14 +2,15 @@
     <div class="book">
         <img :src="require('@/assets/' + cover)" alt="book cover" align="left"/>
         <br>
-        <p><b>Name:</b>{{ name }}</p>
-        <br>
-        <p><b>Author:</b> {{ author }}</p>
-        <br>
-        <p><b>Year:</b> {{ year }}</p>
-        <br>
-        <p><b>Description:</b> {{ description }}</p>
-        <br>
+        <div class="book_description">
+            <p><b>Name:</b>{{ name }}</p>
+            <br>
+            <p><b>Author:</b> {{ author }}</p>
+            <br>
+            <p><b>Year:</b> {{ year }}</p>
+            <br>
+            <p><b>Description:</b> {{ description }}</p>
+        </div>
     </div>
 </template>
 
@@ -29,5 +30,11 @@ export default {
 <style scoped>
 p {
     text-align: left;
+}
+
+img {
+    height: 21rem;
+    width: 15rem;
+    margin-right: 1rem;
 }
 </style>
