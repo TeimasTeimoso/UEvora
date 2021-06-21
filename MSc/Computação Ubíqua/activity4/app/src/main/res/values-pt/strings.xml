@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AppBásica</string>
+    <string name="hint_username">Escreva aqui o nome de utilizador</string>
+    <string name="hint_password">Escreva aqui a sua password</string>
+    <string name="save_auth_txt">Salvar as minhas credenciais</string>
+    <string name="invalid_creds">Credenciais inválidas!</string>
+    <string name="remaining_time">Faltam %d segundos!</string>
+    <string name="finished">Terminou!</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BasicApp</string>
+    <string name="hint_username">Your username goes here</string>
+    <string name="hint_password">Your password goes here</string>
+    <string name="save_auth_txt">Save my credentials</string>
+    <string name="invalid_creds">Invalid credentials!</string>
+    <string name="remaining_time">%d seconds missing!</string>
+    <string name="finished">Finished!</string>
+</resources>
