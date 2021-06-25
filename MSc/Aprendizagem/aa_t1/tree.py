@@ -1,29 +1,85 @@
 import numpy as np
 import pandas as pd
 from pandas.core import groupby
+from pandas.core.algorithms import value_counts
 
 dataset = pd.read_csv('weather.nominal.csv')
 
+"""
+Returns the number of occurences for each
+value in a specified column
+"""
+def get_values_occurrences(attribute: str) -> dict:
+    return dict(dataset[attribute].value_counts())
 
-def get_frequency_by_value(dataset: pd.Series, attribute: str, results:str) -> dict:
-    total_number_of_elements = dataset[attribute].count()
+"""
+Given a dictionary of attribute's value and result frequencies,
+it groups them by attribute's value.
+"""
+def group_by_attribute_value(frequency_dictionary: dict) -> dict:
+    frequency_by_attribute_value = {}
     
-    occurences_by_values = dict(dataset.groupby([attribute, results])[attribute].count())
+    for entry in frequency_dictionary.items():
+        key = entry[0][0]
 
-    frequency_by_values = {x[0]: x[1]/total_number_of_elements for x in occurences_by_values.items()}
+        if key in frequency_by_attribute_value:
+            frequency_by_attribute_value[key].append(entry[1])
+        else:
+            frequency_by_attribute_value[key] = [entry[1]]
 
-    return frequency_by_values
+    return frequency_by_attribute_value
 
-print(get_frequency_by_value(dataset, 'outlook', 'play'))
+"""
+Given an attribute name and the results it computes 
+the frequency for each value
+"""
+def get_frequency_for_attributes_values(dataset: pd.DataFrame, attribute: str) -> dict:
+    occurrence_by_attributes_values = get_values_occurrences(attribute)
+    
+    occurrence_grouped_by_values_and_results = dict(dataset.groupby([attribute, dataset.columns[-1]])[attribute].count())
 
-def calculate_entropy(frequency_list: dict) -> float:
+    frequency_by_values = {x[0]: x[1]/occurrence_by_attributes_values.get(x[0][0]) for x in occurrence_grouped_by_values_and_results.items()}
+
+    frequency_by_attribute_value = group_by_attribute_value(frequency_by_values)
+
+    return frequency_by_attribute_value
+
+def get_frequency_for_results(dataset:pd.DataFrame, occurrence_by_results: dict, total_number_of_occurrences: int) -> dict:
+
+    frequency_by_results = {x[0]: x[1]/total_number_of_occurrences for x in occurrence_by_results.items()}
+    
+    return frequency_by_results
+
+"""
+It computes the entropy for a given attribute
+"""
+def calculate_entropy(probabilities_of_attribute: list) -> float:
     entropy = 0
 
-    for probability in frequency_list.values():
-        print(-probability * np.log2(probability))
+    for probability in probabilities_of_attribute:
         entropy += -probability * np.log2(probability)
 
     return entropy
 
-fl = get_frequency_by_value(dataset, 'outlook', 'play')
-print(calculate_entropy(fl))
+def calculate_information_gain(dataset: pd.DataFrame, attribute: str) -> float:
+    info_gain = 0
+
+    occurrence_by_results = dict(dataset[dataset.columns[-1]].value_counts())
+    occurrence_by_values = dict(dataset[attribute].value_counts())
+    total_number_of_occurrences = sum(occurrence_by_results.values())
+
+    results_frequency = get_frequency_for_results(dataset, occurrence_by_results, total_number_of_occurrences)
+    attributes_entropy = calculate_entropy(results_frequency.values())
+
+    info_gain += attributes_entropy
+
+    attribute_values = list(dataset[attribute].unique())
+    attributes_values_frequencies = get_frequency_for_attributes_values(dataset, attribute)
+
+    for value in attribute_values:
+        info_gain += - (occurrence_by_values.get(value)/total_number_of_occurrences) * calculate_entropy(attributes_values_frequencies.get(value))
+    
+    return info_gain
+
+
+print(calculate_information_gain(dataset, 'outlook'))
