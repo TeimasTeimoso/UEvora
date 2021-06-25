@@ -83,3 +83,18 @@ def calculate_information_gain(dataset: pd.DataFrame, attribute: str) -> float:
 
 
 print(calculate_information_gain(dataset, 'outlook'))
+print(f'Entropy of Temperature: {calculate_information_gain(dataset, "temperature")}')
+
+print(f'Entropy of Temperature: {calculate_information_gain(dataset, "windy")}')
+
+def choose_best_attribute(dataset: pd.DataFrame) -> str:
+    best_attribute = ('', 0)
+    # exclude the last column
+    attributes = dataset.columns[:-1]
+
+    for attribute in attributes:
+        attribute_info_gain = calculate_information_gain(dataset, attribute)
+        if attribute_info_gain >= best_attribute[1]:
+            best_attribute = (attribute, attribute_info_gain)
+
+    return best_attribute
