@@ -1,3 +1,4 @@
+from typing import Tuple
 import numpy as np
 import pandas as pd
 from pandas.core import groupby
@@ -85,7 +86,8 @@ def calculate_information_gain(dataset: pd.DataFrame, attribute: str) -> float:
 print(calculate_information_gain(dataset, 'outlook'))
 print(f'Entropy of Temperature: {calculate_information_gain(dataset, "temperature")}')
 
-print(f'Entropy of Temperature: {calculate_information_gain(dataset, "windy")}')
+print(f'Entropy of Windy: {calculate_information_gain(dataset, "windy")}')
+print(f'Entropy of humidity: {calculate_information_gain(dataset, "humidity")}')
 
 def choose_best_attribute(dataset: pd.DataFrame) -> str:
     best_attribute = ('', 0)
@@ -98,3 +100,19 @@ def choose_best_attribute(dataset: pd.DataFrame) -> str:
             best_attribute = (attribute, attribute_info_gain)
 
     return best_attribute
+
+
+"""
+Checks if the dataset is homogenous
+"""
+def is_homogeneous(y_data: pd.DataFrame) -> Tuple[bool, str]:
+    homogeneous = y_data.nunique() == 1
+
+    if homogeneous:
+        # get the first value from data frame
+        return (homogeneous, y_data[0][0])
+
+    return (False, '')
+
+
+print(choose_best_attribute(dataset))
