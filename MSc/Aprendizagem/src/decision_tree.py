@@ -99,4 +99,3 @@ class DecisionTree:
             return 1
 
         return 0
-        
