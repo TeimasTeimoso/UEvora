@@ -10,6 +10,12 @@ class DecisionTree:
         self._prune = prune
         self._hit = 0
 
+    def __str__(self) -> str:
+        print(self._root)
+        print(self._root.get_children().get('yes'))
+        print(self._root.get_children().get('no'))
+        
+
     @staticmethod
     def _create_children(x_data: pd.DataFrame, attribute: str) -> Dict[str, Node]:
         children = {}
@@ -19,7 +25,10 @@ class DecisionTree:
             children[value] = Node(attribute=attribute, class_value=value)
 
         return children
-
+    @staticmethod
+    def _make_leaf(class_value):
+        leaf = Node(class_value=class_value)
+        return leaf
 
     def fit(self, x_data: pd.DataFrame, y_data: pd.DataFrame, attribute_list: list):
         return self.grow_tree(self._root, x_data, y_data, attribute_list)
@@ -67,6 +76,7 @@ class DecisionTree:
         return self._hit/test_data_len
 
     def traverse_tree(self, x_entry: pd.Series, y_entry: pd.Series) -> int:
+        print(x_entry)
         current_node = self._root
 
         while not current_node.is_leaf():
@@ -84,3 +94,4 @@ class DecisionTree:
             return 1
 
         return 0
+        

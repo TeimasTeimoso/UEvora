@@ -3,17 +3,12 @@ import numpy as np
 import pandas as pd
 from pandas.core import groupby
 from pandas.core.algorithms import value_counts
-
-dataset = pd.read_csv('weather.nominal.csv')
-
-attribute_list = list(dataset.columns)[:-1]
-x_data, y_data = np.split(dataset, [-1], axis=1)
 """
 Returns the number of occurences for each
 value in a specified column
 """
-def get_values_occurrences(attribute: str) -> Dict[str, int]:
-    return dict(dataset[attribute].value_counts())
+def get_values_occurrences(x_data: pd.DataFrame, attribute: str) -> Dict[str, int]:
+    return dict(x_data[attribute].value_counts())
 
 """
 Given a dictionary of attribute's value and result frequencies,
@@ -40,7 +35,7 @@ def get_frequency_for_attributes_values(x_data: pd.DataFrame, y_data:pd.DataFram
     results_column_name = y_data.columns[-1]
     complete_data = x_data.copy()
     complete_data[results_column_name] = y_data 
-    occurrence_by_attributes_values = get_values_occurrences(attribute)
+    occurrence_by_attributes_values = get_values_occurrences(x_data, attribute)
     
     occurrence_grouped_by_values_and_results = dict(complete_data.groupby([attribute, results_column_name])[attribute].count())
 
