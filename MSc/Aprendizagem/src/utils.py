@@ -6,6 +6,8 @@ from pandas.core.algorithms import value_counts
 
 dataset = pd.read_csv('weather.nominal.csv')
 
+attribute_list = list(dataset.columns)[:-1]
+x_data, y_data = np.split(dataset, [-1], axis=1)
 """
 Returns the number of occurences for each
 value in a specified column
@@ -34,10 +36,13 @@ def group_by_attribute_value(frequency_dictionary: dict) -> dict:
 Given an attribute name and the results it computes 
 the frequency for each value
 """
-def get_frequency_for_attributes_values(dataset: pd.DataFrame, attribute: str) -> dict:
+def get_frequency_for_attributes_values(x_data: pd.DataFrame, y_data:pd.DataFrame, attribute: str) -> dict:
+    results_column_name = y_data.columns[-1]
+    complete_data = x_data.copy()
+    complete_data[results_column_name] = y_data 
     occurrence_by_attributes_values = get_values_occurrences(attribute)
     
-    occurrence_grouped_by_values_and_results = dict(dataset.groupby([attribute, dataset.columns[-1]])[attribute].count())
+    occurrence_grouped_by_values_and_results = dict(complete_data.groupby([attribute, results_column_name])[attribute].count())
 
     frequency_by_values = {x[0]: x[1]/occurrence_by_attributes_values.get(x[0][0]) for x in occurrence_grouped_by_values_and_results.items()}
 
@@ -45,7 +50,7 @@ def get_frequency_for_attributes_values(dataset: pd.DataFrame, attribute: str) -
 
     return frequency_by_attribute_value
 
-def get_frequency_for_results(dataset:pd.DataFrame, occurrence_by_results: dict, total_number_of_occurrences: int) -> dict:
+def get_frequency_for_results(occurrence_by_results: dict, total_number_of_occurrences: int) -> dict:
 
     frequency_by_results = {x[0]: x[1]/total_number_of_occurrences for x in occurrence_by_results.items()}
     
@@ -62,20 +67,22 @@ def calculate_entropy(probabilities_of_attribute: list) -> float:
 
     return entropy
 
-def calculate_information_gain(dataset: pd.DataFrame, attribute: str) -> float:
+def calculate_information_gain(x_data: pd.DataFrame, y_data:pd.DataFrame, attribute: str) -> float:
     info_gain = 0
 
-    occurrence_by_results = dict(dataset[dataset.columns[-1]].value_counts())
-    occurrence_by_values = dict(dataset[attribute].value_counts())
+    y_column_name = y_data.columns[0]
+
+    occurrence_by_results = dict(y_data[y_column_name].value_counts())
+    occurrence_by_values = dict(x_data[attribute].value_counts())
     total_number_of_occurrences = sum(occurrence_by_results.values())
 
-    results_frequency = get_frequency_for_results(dataset, occurrence_by_results, total_number_of_occurrences)
+    results_frequency = get_frequency_for_results(occurrence_by_results, total_number_of_occurrences)
     attributes_entropy = calculate_entropy(results_frequency.values())
 
     info_gain += attributes_entropy
 
-    attribute_values = list(dataset[attribute].unique())
-    attributes_values_frequencies = get_frequency_for_attributes_values(dataset, attribute)
+    attribute_values = list(x_data[attribute].unique())
+    attributes_values_frequencies = get_frequency_for_attributes_values(x_data, y_data, attribute)
 
     for value in attribute_values:
         info_gain += - (occurrence_by_values.get(value)/total_number_of_occurrences) * calculate_entropy(attributes_values_frequencies.get(value))
@@ -83,19 +90,11 @@ def calculate_information_gain(dataset: pd.DataFrame, attribute: str) -> float:
     return info_gain
 
 
-print(calculate_information_gain(dataset, 'outlook'))
-print(f'Entropy of Temperature: {calculate_information_gain(dataset, "temperature")}')
-
-print(f'Entropy of Windy: {calculate_information_gain(dataset, "windy")}')
-print(f'Entropy of humidity: {calculate_information_gain(dataset, "humidity")}')
-
-def choose_best_attribute(dataset: pd.DataFrame) -> str:
+def choose_best_attribute(x_data: pd.DataFrame, y_data: pd.DataFrame, attribute_list: list) -> str:
     best_attribute = ('', 0)
-    # exclude the last column
-    attributes = dataset.columns[:-1]
 
-    for attribute in attributes:
-        attribute_info_gain = calculate_information_gain(dataset, attribute)
+    for attribute in attribute_list:
+        attribute_info_gain = calculate_information_gain(x_data, y_data, attribute)
         if attribute_info_gain >= best_attribute[1]:
             best_attribute = (attribute, attribute_info_gain)
 
@@ -115,4 +114,4 @@ def is_homogeneous(y_data: pd.DataFrame) -> Tuple[bool, str]:
     return (False, '')
 
 
-print(choose_best_attribute(dataset))
+print(choose_best_attribute(x_data, y_data, attribute_list))
