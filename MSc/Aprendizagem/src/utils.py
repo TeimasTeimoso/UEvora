@@ -1,4 +1,5 @@
-from typing import Dict, Tuple
+import math
+from typing import Dict, Tuple, final
 import numpy as np
 import pandas as pd
 from pandas.core import groupby
@@ -14,10 +15,10 @@ def get_values_occurrences(x_data: pd.DataFrame, attribute: str) -> Dict[str, in
 Given a dictionary of attribute's value and result frequencies,
 it groups them by attribute's value.
 """
-def group_by_attribute_value(frequency_dictionary: dict) -> Dict[str, float]:
+def group_by_attribute_value(dictionary: dict) -> Dict[str, float]:
     frequency_by_attribute_value = {}
     
-    for entry in frequency_dictionary.items():
+    for entry in dictionary.items():
         key = entry[0][0]
 
         if key in frequency_by_attribute_value:
@@ -84,6 +85,38 @@ def calculate_information_gain(x_data: pd.DataFrame, y_data:pd.DataFrame, attrib
     
     return info_gain
 
+def calculate_gini(x_data: pd.DataFrame, y_data: pd.DataFrame, attribute: str) -> float:
+    final_gini_index = 0
+
+    y_column_name = y_data.columns[0]
+    number_of_y_unique_values = len(y_data.iloc[:, 0].unique())
+    print(number_of_y_unique_values)
+
+    complete_data = x_data.copy()
+    complete_data[y_column_name] = y_data 
+
+    occurrence_by_results = dict(y_data[y_column_name].value_counts())
+    occurrence_grouped_by_values_and_results = dict(complete_data.groupby([attribute, y_column_name])[attribute].count())
+    entrys = group_by_attribute_value(occurrence_grouped_by_values_and_results)
+    total_number_of_occurrences = sum(occurrence_by_results.values())
+
+    attribute_values = list(x_data[attribute].unique())
+
+    for value in attribute_values:
+        ocurrences_with_value = sum(entrys.get(value))
+        partial_gini_index = (ocurrences_with_value/total_number_of_occurrences * number_of_y_unique_values)
+
+        while len(entrys.get(value)) < number_of_y_unique_values:
+            tmp = entrys.get(value)
+            tmp.append(0)
+            entrys[value] = tmp
+
+        for entry in entrys.get(value):
+            partial_gini_index *=  (entry/ocurrences_with_value)
+        final_gini_index += partial_gini_index
+
+    return 1-final_gini_index
+        
 
 def choose_best_attribute(x_data: pd.DataFrame, y_data: pd.DataFrame, attribute_list: list) -> str:
     best_attribute = ('', 0)
@@ -115,3 +148,11 @@ return the value with most occurences
 def most_of_y(y_data: pd.Series) -> str:
     occurences = y_data.value_counts()
     return (list(occurences.index)[0][0])
+
+
+dataset = pd.read_csv('slides.csv')
+
+attribute_list = list(dataset.columns)[:-1]
+x_data, y_data = np.split(dataset, [-1], axis=1)
+
+print(calculate_gini(x_data, y_data, 'Length'))
