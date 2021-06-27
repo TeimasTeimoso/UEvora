@@ -118,13 +118,16 @@ def calculate_gini(x_data: pd.DataFrame, y_data: pd.DataFrame, attribute: str) -
     return 1-final_gini_index
         
 
-def choose_best_attribute(x_data: pd.DataFrame, y_data: pd.DataFrame, attribute_list: list) -> str:
+def choose_best_attribute(x_data: pd.DataFrame, y_data: pd.DataFrame, attribute_list: list, measure: str) -> str:
     best_attribute = ('', 0)
 
     for attribute in attribute_list:
-        attribute_info_gain = calculate_information_gain(x_data, y_data, attribute)
-        if attribute_info_gain >= best_attribute[1]:
-            best_attribute = (attribute, attribute_info_gain)
+        if measure == 'gini':
+            attribute_purity = calculate_gini(x_data, y_data, attribute)
+        else:
+            attribute_purity = calculate_information_gain(x_data, y_data, attribute)
+        if attribute_purity >= best_attribute[1]:
+            best_attribute = (attribute, attribute_purity)
 
     return best_attribute[0]
 
@@ -148,11 +151,3 @@ return the value with most occurences
 def most_of_y(y_data: pd.Series) -> str:
     occurences = y_data.value_counts()
     return (list(occurences.index)[0][0])
-
-
-dataset = pd.read_csv('slides.csv')
-
-attribute_list = list(dataset.columns)[:-1]
-x_data, y_data = np.split(dataset, [-1], axis=1)
-
-print(calculate_gini(x_data, y_data, 'Length'))
