@@ -107,11 +107,11 @@ Checks if the dataset is homogenous
 def is_homogeneous(y_data: pd.DataFrame) -> Tuple[bool, str]:
     homogeneous = y_data.nunique() == 1
 
-    if homogeneous:
+    if homogeneous[0]:
         # get the first value from data frame
-        return (homogeneous, y_data[0][0])
+        return (True, y_data.iloc[0,0])
 
     return (False, '')
 
 
-print(choose_best_attribute(x_data, y_data, attribute_list))
+#print(choose_best_attribute(x_data, y_data, attribute_list))
