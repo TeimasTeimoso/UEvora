@@ -21,5 +21,11 @@ class Node:
     def get_class_value(self) -> str:
         return self._class_value
 
+    def get_children(self) -> dict:
+        return self._children
+
+    def is_leaf(self) -> bool:
+        return not self._children
+
     def __str__(self) -> str:
         return f'[Class: {self._class_value} || Attribute: {self._attribute} || Children:  {self._children}'

@@ -12,4 +12,6 @@ x_train, x_test, y_train,y_test = train_test_split(x_data, y_data)
 
 decision_tree = DecisionTree()
 
-decision_tree.fit(x_data, y_data, attribute_list)
+decision_tree.fit(x_train, y_train, attribute_list)
+
+print(decision_tree.score(x_test, y_test))
