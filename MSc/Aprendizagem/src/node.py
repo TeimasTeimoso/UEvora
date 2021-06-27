@@ -7,7 +7,7 @@ class Node:
         self._children = children
     
     def set_attribute(self, attr: str) -> None:
-        self._class_value = attr
+        self._attribute = attr
 
     def set_children(self, children: dict) -> None:
         self._children = children
@@ -20,3 +20,6 @@ class Node:
 
     def get_class_value(self) -> str:
         return self._class_value
+
+    def __str__(self) -> str:
+        return f'[Class: {self._class_value} || Attribute: {self._attribute} || Children:  {self._children}'
