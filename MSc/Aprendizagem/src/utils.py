@@ -90,7 +90,6 @@ def calculate_gini(x_data: pd.DataFrame, y_data: pd.DataFrame, attribute: str) -
 
     y_column_name = y_data.columns[0]
     number_of_y_unique_values = len(y_data.iloc[:, 0].unique())
-    print(number_of_y_unique_values)
 
     complete_data = x_data.copy()
     complete_data[y_column_name] = y_data 

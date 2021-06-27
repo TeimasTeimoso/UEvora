@@ -9,7 +9,7 @@ DEPTH_LIMIT = 5
 Prune can be passed pre or post
 """
 class DecisionTree:
-    def __init__(self, purity_measure='entropy', prune=False) -> None:
+    def __init__(self, purity_measure, prune) -> None:
         self._root = Node()
         self._purity_measure = purity_measure
         self._prune = prune
@@ -46,7 +46,7 @@ class DecisionTree:
             node.set_class(value)
             return node
 
-        new_node_attribute = choose_best_attribute(x_data, y_data, attribute_list)
+        new_node_attribute = choose_best_attribute(x_data, y_data, attribute_list, self._purity_measure)
 
         if new_node_attribute:        
             node.set_attribute(new_node_attribute)
