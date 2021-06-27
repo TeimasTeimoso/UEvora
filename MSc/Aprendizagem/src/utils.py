@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Dict, Tuple
 import numpy as np
 import pandas as pd
 from pandas.core import groupby
@@ -12,14 +12,14 @@ x_data, y_data = np.split(dataset, [-1], axis=1)
 Returns the number of occurences for each
 value in a specified column
 """
-def get_values_occurrences(attribute: str) -> dict:
+def get_values_occurrences(attribute: str) -> Dict[str, int]:
     return dict(dataset[attribute].value_counts())
 
 """
 Given a dictionary of attribute's value and result frequencies,
 it groups them by attribute's value.
 """
-def group_by_attribute_value(frequency_dictionary: dict) -> dict:
+def group_by_attribute_value(frequency_dictionary: dict) -> Dict[str, float]:
     frequency_by_attribute_value = {}
     
     for entry in frequency_dictionary.items():
@@ -98,7 +98,7 @@ def choose_best_attribute(x_data: pd.DataFrame, y_data: pd.DataFrame, attribute_
         if attribute_info_gain >= best_attribute[1]:
             best_attribute = (attribute, attribute_info_gain)
 
-    return best_attribute
+    return best_attribute[0]
 
 
 """
@@ -112,6 +112,3 @@ def is_homogeneous(y_data: pd.DataFrame) -> Tuple[bool, str]:
         return (True, y_data.iloc[0,0])
 
     return (False, '')
-
-
-#print(choose_best_attribute(x_data, y_data, attribute_list))
