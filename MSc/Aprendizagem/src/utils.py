@@ -108,7 +108,10 @@ def is_homogeneous(y_data: pd.DataFrame) -> Tuple[bool, str]:
 
     return (False, '')
 
-# return the value with most occurences
+
+"""
+return the value with most occurences
+"""
 def most_of_y(y_data: pd.Series) -> str:
     occurences = y_data.value_counts()
     return (list(occurences.index)[0][0])

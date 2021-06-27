@@ -3,19 +3,19 @@ from utils import choose_best_attribute, is_homogeneous, most_of_y
 from node import Node
 import pandas as pd
 
+DEPTH_LIMIT = 5
+
+"""
+Prune can be passed pre or post
+"""
 class DecisionTree:
     def __init__(self, purity_measure='entropy', prune=False) -> None:
         self._root = Node()
         self._purity_measure = purity_measure
         self._prune = prune
+        self._depth = 0
         self._hit = 0
-
-    def __str__(self) -> str:
-        print(self._root)
-        print(self._root.get_children().get('yes'))
-        print(self._root.get_children().get('no'))
-        
-
+      
     @staticmethod
     def _create_children(x_data: pd.DataFrame, attribute: str) -> Dict[str, Node]:
         children = {}
@@ -25,10 +25,6 @@ class DecisionTree:
             children[value] = Node(attribute=attribute, class_value=value)
 
         return children
-    @staticmethod
-    def _make_leaf(class_value):
-        leaf = Node(class_value=class_value)
-        return leaf
 
     def fit(self, x_data: pd.DataFrame, y_data: pd.DataFrame, attribute_list: list):
         return self.grow_tree(self._root, x_data, y_data, attribute_list)
@@ -59,14 +55,24 @@ class DecisionTree:
             node.set_children(children)
 
             for child in children.items():
+                # increases branch depth
+                self._depth += 1
+
+                if self._prune == 'pre' and self._depth == DEPTH_LIMIT:
+                    # reset branch depth
+                    class_value = most_of_y(y_data)
+                    node.set_class(class_value)
+                    return node
+
                 self.grow_tree(child[1], x_data, y_data, attribute_list)
         else:
+            # reset branch depth
             class_value = most_of_y(y_data)
             node.set_class(class_value)
 
         return node
         
-    def score(self, x_data: pd.DataFrame(), y_data: pd.DataFrame()):
+    def score(self, x_data: pd.DataFrame, y_data: pd.DataFrame):
         test_data_len = len(x_data)
 
         for entry in range(test_data_len):
@@ -76,7 +82,6 @@ class DecisionTree:
         return self._hit/test_data_len
 
     def traverse_tree(self, x_entry: pd.Series, y_entry: pd.Series) -> int:
-        print(x_entry)
         current_node = self._root
 
         while not current_node.is_leaf():
