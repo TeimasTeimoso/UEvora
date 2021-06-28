@@ -1,7 +1,9 @@
 package pt.uevora.di.atividade5
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,6 +15,11 @@ class CounterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_counter)
+
+        findViewById<Button>(R.id.list_breed).setOnClickListener {
+            openListActivity()
+        }
+
     }
 
     private fun startCountDownTimer(time: Long) {
@@ -43,5 +50,12 @@ class CounterActivity : AppCompatActivity() {
 
         timer.cancel()
     }
+
+    private fun openListActivity() {
+        val intent = Intent(this, ListActivity::class.java)
+        startActivity(intent)
+    }
+
+
 
 }

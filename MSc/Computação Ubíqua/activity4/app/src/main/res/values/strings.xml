@@ -6,4 +6,5 @@
     <string name="invalid_creds">Invalid credentials!</string>
     <string name="remaining_time">%d seconds missing!</string>
     <string name="finished">Finished!</string>
+    <string name="open_list">List breeds</string>
 </resources>

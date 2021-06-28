@@ -7,4 +7,5 @@
     <string name="invalid_creds">Credenciais inválidas!</string>
     <string name="remaining_time">Faltam %d segundos!</string>
     <string name="finished">Terminou!</string>
+    <string name="open_list">Listar raças</string>
 </resources>
