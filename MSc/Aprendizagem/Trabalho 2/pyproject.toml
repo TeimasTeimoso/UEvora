@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "a-t2"
+version = "0.1.0"
+description = ""
+authors = ["TeimasTeimoso <teimas_2010@hotmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+scikit-learn = "^0.24.2"
+numpy = "^1.21.0"
+pandas = "^1.2.5"
+jupyterlab = "^3.0.16"
+sklearn = "^0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
