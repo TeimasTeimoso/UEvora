@@ -14,6 +14,7 @@ class DecisionTree:
         self._purity_measure = purity_measure
         self._prune = prune
         self._depth = 0
+        self._branch_depth = 0
         self._hit = 0
       
     @staticmethod
@@ -27,7 +28,9 @@ class DecisionTree:
         return children
 
     def fit(self, x_data: pd.DataFrame, y_data: pd.DataFrame, attribute_list: list):
-        return self.grow_tree(self._root, x_data, y_data, attribute_list)
+        tree = self.grow_tree(self._root, x_data, y_data, attribute_list)
+        print(self._depth)
+        return tree
 
     def grow_tree(self, node: Node, x_data: pd.DataFrame, y_data: pd.DataFrame, attribute_list: list):
         attribute = node.get_attribute()
@@ -56,7 +59,10 @@ class DecisionTree:
 
             for child in children.items():
                 # increases branch depth
-                self._depth += 1
+                self._branch_depth += 1
+
+                if self._branch_depth >= self._depth:
+                    self._depth += 1
 
                 if self._prune == 'pre' and self._depth == DEPTH_LIMIT:
                     # reset branch depth
@@ -70,6 +76,8 @@ class DecisionTree:
             class_value = most_of_y(y_data)
             node.set_class(class_value)
 
+        print(node)
+        self._branch_depth = 0
         return node
         
     def score(self, x_data: pd.DataFrame, y_data: pd.DataFrame):
