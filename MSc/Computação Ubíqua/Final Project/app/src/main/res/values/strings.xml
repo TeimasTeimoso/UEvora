@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GBL</string>
+    <string name="email_hint">Enter your email address</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="list_name_hint">List name</string>
+    <string name="create_list_message">Create list</string>
+    <string name="create">Create</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="create_with_success">List created!</string>
+</resources>

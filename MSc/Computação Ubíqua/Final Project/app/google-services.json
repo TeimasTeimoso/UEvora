@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471735114803",
+    "project_id": "gbl---glorified-book-lis-56aa7",
+    "storage_bucket": "gbl---glorified-book-lis-56aa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471735114803:android:95c9b68010e14512ab1746",
+        "android_client_info": {
+          "package_name": "uevora.di.gbl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471735114803-gg4s1943qgva97vu8okm7752u5917bvi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5OErGTbixXCfHz-nT5But9vBLt8zS3fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471735114803-gg4s1943qgva97vu8okm7752u5917bvi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GBL</string>
+    <string name="email_hint">Introduza o seu email</string>
+    <string name="password_hint">Introduza a sua password</string>
+    <string name="list_name_hint">Nome da lista</string>
+    <string name="create_list_message">Criar lista</string>
+    <string name="create">Criar</string>
+    <string name="dismiss">Cancelar</string>
+    <string name="create_with_success">Lista criada!</string>
+</resources>
