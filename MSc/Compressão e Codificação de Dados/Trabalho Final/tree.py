@@ -7,6 +7,9 @@ class HuffmanTree:
         self._root = Node()
         self._symbol_table = {}
 
+    def set_root(self, node: Node):
+        self._root = node
+
     def build_tree(self, not_yet_processed_nodes: list):
 
         while len(not_yet_processed_nodes) > 1:
@@ -79,23 +82,14 @@ class HuffmanTree:
     def compute_new_probability(left_node: Node, right_node: Node) -> float:
         return left_node.get_probability() + right_node.get_probability()
 
+def read_tree(unpadded_bitstream: str, index: int) -> Node:
+    if unpadded_bitstream[index] == '1':
+        index += 1
+        bin_symbol = unpadded_bitstream[index:index+8]
+        symbol = chr(int(bin_symbol, 2))
+        return (Node(symbol=symbol), index+7)
 
-    def get_encoded_data(self, bitstream: str) -> str:
-        number_of_leading_zeros = int(bitstream[:3],2) # get 3 bit representation
-        starting_index = 3+number_of_leading_zeros
-        unpadded_bitstream = bitstream[starting_index:]
+    left_node, index = read_tree(unpadded_bitstream, index+1)
+    rigth_node, index = read_tree(unpadded_bitstream, index+1)
 
-    def read_tree(self, unpadded_bitstream: str, index: int) -> Node:
-        if unpadded_bitstream[index] == '1':
-            index += 1
-            bin_symbol = unpadded_bitstream[index:index+8]
-            symbol = chr(int(bin_symbol, 2))
-            return (Node(symbol=symbol), index+7)
-
-        left_node, index = self.read_tree(unpadded_bitstream, index+1)
-        rigth_node, index = self.read_tree(unpadded_bitstream, index+1)
-
-        return (Node(left=left_node, rigth=rigth_node), index)
-
-
-
+    return (Node(left=left_node, rigth=rigth_node), index)

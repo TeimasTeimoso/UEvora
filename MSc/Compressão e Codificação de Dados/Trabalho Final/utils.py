@@ -43,3 +43,9 @@ def pad_representation(binary_representation: str) -> str:
     leading_zeros: str = ''.zfill(number_of_leading_zeros)
 
     return bin_number_of_zeros + leading_zeros + binary_representation
+
+def unpad_representation(bitstream: str) -> str:
+    number_of_leading_zeros: int = int(bitstream[:3],2) # get 3 bit representation
+    starting_index: int = 3+number_of_leading_zeros
+    
+    return bitstream[starting_index:]

@@ -1,7 +1,7 @@
 from bitstring import BitArray
 import pickle
 
-from encode import encode
+from compress import compress
 from tree import HuffmanTree
 from utils import create_leafs, read_input, pad_representation
 
@@ -12,7 +12,7 @@ if __name__ == '__main__':
     h = HuffmanTree()
     h.build_tree(leafs)
 
-    r = encode(i, h._symbol_table)
+    r = compress(i, h._symbol_table)
     padded_r = pad_representation(r)
     print(padded_r)
 
