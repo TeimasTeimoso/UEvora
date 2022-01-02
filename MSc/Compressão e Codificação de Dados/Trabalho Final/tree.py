@@ -81,15 +81,3 @@ class HuffmanTree:
     @staticmethod
     def compute_new_probability(left_node: Node, right_node: Node) -> float:
         return left_node.get_probability() + right_node.get_probability()
-
-def read_tree(unpadded_bitstream: str, index: int) -> Node:
-    if unpadded_bitstream[index] == '1':
-        index += 1
-        bin_symbol = unpadded_bitstream[index:index+8]
-        symbol = chr(int(bin_symbol, 2))
-        return (Node(symbol=symbol), index+7)
-
-    left_node, index = read_tree(unpadded_bitstream, index+1)
-    rigth_node, index = read_tree(unpadded_bitstream, index+1)
-
-    return (Node(left=left_node, rigth=rigth_node), index)

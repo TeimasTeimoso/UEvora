@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 from node import Node
 
 def read_input(file_path) -> bytes:
@@ -49,3 +49,17 @@ def unpad_representation(bitstream: str) -> str:
     starting_index: int = 3+number_of_leading_zeros
     
     return bitstream[starting_index:]
+
+def split_encoded_data(unpadded_bitstream: str) -> Tuple[Node, str]:
+    if unpadded_bitstream[0] == '1':
+        next_bit: int = 1
+        bin_symbol: str = unpadded_bitstream[next_bit:next_bit+8]
+        symbol: str = chr(int(bin_symbol, 2))
+        return (Node(symbol=symbol), unpadded_bitstream[next_bit+8:])
+    else:
+        unpadded_bitstream: str = unpadded_bitstream[1:]
+
+    left_node, remaining_bitstream = split_encoded_data(unpadded_bitstream)
+    rigth_node, remaining_bitstream = split_encoded_data(remaining_bitstream)
+
+    return (Node(left=left_node, rigth=rigth_node), remaining_bitstream)

@@ -1,9 +1,9 @@
 from bitstring import BitArray
-import pickle
 
 from compress import compress
+from extract import extract
 from tree import HuffmanTree
-from utils import create_leafs, read_input, pad_representation
+from utils import create_leafs, read_input, pad_representation, unpad_representation
 
 if __name__ == '__main__':
     i = read_input('b.txt')
@@ -24,22 +24,14 @@ if __name__ == '__main__':
     with open('b.bin', 'wb') as f:
         b = BitArray(bin=padded_x)
         f.write(b.tobytes())
-        f.write(bytes('\n', 'utf-8'))
         bb = BitArray(bin=padded_r)
         f.write(bb.tobytes())
-
-    #with open("b.bin", "ab") as myfile:
-    #    myfile.write(pickle.dumps(h._root))
-
-
-    #print('####################################')
 
     b = BitArray(filename='b.bin')
     print("Read:")
     print(b.bin)
 
-    h.read_tree(b.bin[3:], 0)
-
-    #with open('b.txt', 'rb') as f:
-    #    a = f.read()
-    #    print(loads(a)._rigth_child._symbol)
+    new_huff = HuffmanTree()
+    unp_bitstram = unpad_representation(b.bin)
+    extract(unp_bitstram, new_huff)
+    
