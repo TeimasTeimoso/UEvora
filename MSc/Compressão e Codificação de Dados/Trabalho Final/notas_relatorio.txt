@@ -1,0 +1,11 @@
+Huffman.
+
+Uma passagem para ler os simbolso e construir a arvore.
+Outra para ler os simbolos e codifica-los.
+
+Arvore é cosntruida usando uma lista ao estilo de queue com prioridade.
+
+A arvore tem adicionalmente uma tabela onde é possivel cnonsultar o codigo correspondente a cada simbolo. (Acesso constante)
+Assim a travessia (em pos ordem, só é feita uma vez de onde são retirados todos os simbolos).
+
+Após obter os simbolos.
