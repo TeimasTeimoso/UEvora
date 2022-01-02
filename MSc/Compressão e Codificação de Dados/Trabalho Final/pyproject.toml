@@ -8,6 +8,7 @@ authors = ["TeimasTeimoso <teimas_2010@hotmail.com>"]
 python = "^3.10"
 numpy = "^1.22.0"
 matplotlib = "^3.5.1"
+bitstring = "^3.1.9"
 
 [tool.poetry.dev-dependencies]
 
