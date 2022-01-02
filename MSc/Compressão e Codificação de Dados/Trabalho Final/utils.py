@@ -22,14 +22,24 @@ def compute_probability(occur: int, total_items: int) -> float:
 def create_leafs(input: bytes) -> List[Node]:
     total_number_of_chars: int = len(input)
 
-    symbol_dict = get_occurences(input)
-    leafs_list = []
+    symbol_dict: dict = get_occurences(input)
+    leafs_list: list = []
 
     for symbol in symbol_dict.keys():
-        occurrences = symbol_dict.get(symbol)
+        occurrences: int = symbol_dict.get(symbol)
         leafs_list.append(Node(symbol=symbol, 
                             probability=compute_probability(occurrences, total_number_of_chars)))
 
     return leafs_list
 
+"""
+[3 bits with number of tailling 0 |  Number of leading 0s | content]
+"""
+def pad_representation(binary_representation: str) -> str:
+    length_without_padding: int = len(binary_representation) + 3
+    number_of_leading_zeros: int = (8-length_without_padding) % 8
 
+    bin_number_of_zeros: str = format(number_of_leading_zeros, '03b')
+    leading_zeros: str = ''.zfill(number_of_leading_zeros)
+
+    return bin_number_of_zeros + leading_zeros + binary_representation

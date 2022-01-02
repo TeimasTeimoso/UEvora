@@ -3,22 +3,9 @@ import pickle
 
 from encode import encode
 from tree import HuffmanTree
-from utils import create_leafs, read_input
+from utils import create_leafs, read_input, pad_representation
 
 if __name__ == '__main__':
-    """
-    h = HuffmanTree()
-
-    a = [
-        Node(symbol="A", probability=0.1),
-        Node(symbol="B", probability=0.1),
-        Node(symbol="C", probability=0.2),
-        Node(symbol="D", probability=0.3),
-        Node(symbol="E", probability=0.3)
-        ]
-
-    h.build_tree(a)
-    """
     i = read_input('b.txt')
     leafs = create_leafs(i)
 
@@ -26,26 +13,31 @@ if __name__ == '__main__':
     h.build_tree(leafs)
 
     r = encode(i, h._symbol_table)
-
-    print(r)
+    padded_r = pad_representation(r)
+    print(padded_r)
 
     x = h.get_binary_representation(h._root)
-    print(x)
-    #with open('b.bin', 'w') as f:
-    #    f.write('0b'+r)
+    padded_x = pad_representation(x)
+    print(padded_x)
 
+    print("Written:")
     with open('b.bin', 'wb') as f:
-        b = BitArray(bin=r)
+        b = BitArray(bin=padded_x)
         f.write(b.tobytes())
+        f.write(bytes('\n', 'utf-8'))
+        bb = BitArray(bin=padded_r)
+        f.write(bb.tobytes())
 
-    with open("b.bin", "ab") as myfile:
-        myfile.write(pickle.dumps(h._root))
+
+    #with open("b.bin", "ab") as myfile:
+    #    myfile.write(pickle.dumps(h._root))
 
 
     #print('####################################')
 
-    #b = BitArray(filename='b.bin')
-    #print(b.bin)
+    b = BitArray(filename='b.bin')
+    print("Read:")
+    print(b.bin)
 
     #with open('b.txt', 'rb') as f:
     #    a = f.read()
