@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     h.build_tree(a)
     """
-    i = read_input('a.txt')
+    i = read_input('b.txt')
     leafs = create_leafs(i)
 
     h = HuffmanTree()
@@ -29,6 +29,8 @@ if __name__ == '__main__':
 
     print(r)
 
+    x = h.get_binary_representation(h._root, '')
+    print(x)
     #with open('b.bin', 'w') as f:
     #    f.write('0b'+r)
 
@@ -40,10 +42,10 @@ if __name__ == '__main__':
         myfile.write(pickle.dumps(h._root))
 
 
-    print('####################################')
+    #print('####################################')
 
-    b = BitArray(filename='b.bin')
-    print(b.bin)
+    #b = BitArray(filename='b.bin')
+    #print(b.bin)
 
     #with open('b.txt', 'rb') as f:
     #    a = f.read()
