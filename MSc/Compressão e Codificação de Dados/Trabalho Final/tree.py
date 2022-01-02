@@ -10,6 +10,9 @@ class HuffmanTree:
     def set_root(self, node: Node):
         self._root = node
 
+    def get_root(self) -> Node:
+        return self._root
+
     def build_tree(self, not_yet_processed_nodes: list):
 
         while len(not_yet_processed_nodes) > 1:

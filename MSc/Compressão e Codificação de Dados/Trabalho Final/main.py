@@ -23,19 +23,19 @@ if __name__ == '__main__':
 
     full = x + r
     padded_content= pad_representation(full)
-    with open('b.bin', 'wb') as f:
+    with open('b.huffman', 'wb') as f:
         #b = BitArray(bin=padded_x)
         #f.write(b.tobytes())
         #bb = BitArray(bin=padded_r)
         #f.write(bb.tobytes())
         b = BitArray(bin=padded_content)
         f.write(b.tobytes())
-        
-    b = BitArray(filename='b.bin')
+
+    b = BitArray(filename='b.huffman')
     print("Read:")
     print(b.bin)
 
     new_huff = HuffmanTree()
     unp_bitstram = unpad_representation(b.bin)
-    extract(unp_bitstram, new_huff)
-    
+    lmao = extract(unp_bitstram, new_huff)
+    print(f"decoded: {lmao}")
