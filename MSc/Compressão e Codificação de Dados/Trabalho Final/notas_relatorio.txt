@@ -3,9 +3,20 @@ Huffman.
 Uma passagem para ler os simbolso e construir a arvore.
 Outra para ler os simbolos e codifica-los.
 
+O calculo das probabilidades é escusado, poderia ter feito 
+
 Arvore é cosntruida usando uma lista ao estilo de queue com prioridade.
 
 A arvore tem adicionalmente uma tabela onde é possivel cnonsultar o codigo correspondente a cada simbolo. (Acesso constante)
 Assim a travessia (em pos ordem, só é feita uma vez de onde são retirados todos os simbolos).
 
-Após obter os simbolos.
+Após obter os simbolos, estes terão uma string com a sua representação binária.
+Para descomprimir o conteudo é necessário ter a arvore de huffman. Como tal, para evitar ocupar muito espaço é feita uma representação binária da mesma.
+A representação é a travessia pre-ordem da arvore. (Raiz, Esquerda, Direita). É possivel faze-lo assim porque é uma arvore binária completa (todos os nos têm 2 filhos ou nenhum).
+Caso contrario poderia haver ambiguuidade.
+Para guardar esta info é são usados alguns bits extra. É necessário ter uma representação multiplo de 8 (info é guardada em bytes = 8bits).
+Os 3 primeiros bits são usados para representar o numero de 0's adicionados. [3 bits | numero de 0s represntados | conteudo]
+
+Descodificação poderia ser feita com lookup table em vez da arvore. (https://w3-o.cs.hm.edu/users/ruckert/public_html/understanding_mp3/hc.pdf)
+https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.93.9447&rep=rep1&type=pdf
+

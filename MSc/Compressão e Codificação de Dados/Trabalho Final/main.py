@@ -13,20 +13,24 @@ if __name__ == '__main__':
     h.build_tree(leafs)
 
     r = compress(i, h._symbol_table)
-    padded_r = pad_representation(r)
-    print(padded_r)
+    #padded_r = pad_representation(r)
+    #print(padded_r)
 
     print("Written:")
     x = h.get_binary_representation(h._root)
-    padded_x = pad_representation(x)
-    print(padded_x)
+    #padded_x = pad_representation(x)
+    #print(padded_x)
 
+    full = x + r
+    padded_content= pad_representation(full)
     with open('b.bin', 'wb') as f:
-        b = BitArray(bin=padded_x)
+        #b = BitArray(bin=padded_x)
+        #f.write(b.tobytes())
+        #bb = BitArray(bin=padded_r)
+        #f.write(bb.tobytes())
+        b = BitArray(bin=padded_content)
         f.write(b.tobytes())
-        bb = BitArray(bin=padded_r)
-        f.write(bb.tobytes())
-
+        
     b = BitArray(filename='b.bin')
     print("Read:")
     print(b.bin)
