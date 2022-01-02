@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     print(r)
 
-    x = h.get_binary_representation(h._root, '')
+    x = h.get_binary_representation(h._root)
     print(x)
     #with open('b.bin', 'w') as f:
     #    f.write('0b'+r)

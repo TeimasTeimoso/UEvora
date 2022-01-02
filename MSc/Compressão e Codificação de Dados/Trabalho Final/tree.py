@@ -37,25 +37,25 @@ class HuffmanTree:
     def store_codes(self, symbol: str, computed_code: str) -> None:
         self._symbol_table[symbol] = computed_code
 
+    # Done
+    def get_binary_representation(self, node:Node) -> str:
+        left_node_representation = ''
+        rigth_node_representation = ''
 
-    def get_binary_representation(self, node:Node, representation: str) -> str:
         if left_node := node.get_left_child():
-            tmp = self.get_binary_representation(left_node, representation)
-            print(tmp)
+            left_node_representation = self.get_binary_representation(left_node)
         if rigth_node := node.get_rigth_child():
-            self.get_binary_representation(rigth_node, representation)
+            rigth_node_representation = self.get_binary_representation(rigth_node)
 
         if symbol := node.get_symbol():
             # doing it this way because of symolbs, but for images it wont be needed
             ascii_value: int = ord(symbol)
             bin_ascii_value: str = format(ascii_value, '08b') # 1 byte
-            representation += f"1{bin_ascii_value}"
+            node_representation = f"1{bin_ascii_value}"
         else:
-            representation += '0'
+            node_representation = '0'
 
-        print('Cenas')
-        #print(representation)
-        return representation
+        return left_node_representation + rigth_node_representation + node_representation
 
     @staticmethod
     def compute_new_probability(left_node: Node, right_node: Node) -> float:
