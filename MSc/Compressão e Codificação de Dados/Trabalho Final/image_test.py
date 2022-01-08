@@ -2,7 +2,9 @@ from PIL import Image
 import numpy as np
 
 im = Image.open("linda_small.png")
+print(type(im))
 im_bw = im.convert('1') #convert to black and white
+print(type(im_bw))
 im_bw.save('linda_small_bw.png')
 
 im = Image.open("linda_small_bw.png")
