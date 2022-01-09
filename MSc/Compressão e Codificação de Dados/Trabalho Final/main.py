@@ -1,5 +1,6 @@
 import argparse
 from pathlib import Path
+from compress import compress, write_to_file
 from image_processing import open_image, split_into_tiles, tiles_to_symbols
 from utils import create_leafs
 from tree import HuffmanTree
@@ -17,6 +18,8 @@ if __name__ == '__main__':
 
     if args.compress:
         raw_image = open_image(file_path)
+        heigth, width = raw_image.shape
+
         tiled_image = split_into_tiles(raw_image, 2, 2)
         input_sequence = tiles_to_symbols(tiled_image)
 
@@ -25,12 +28,12 @@ if __name__ == '__main__':
         huffman_tree = HuffmanTree()
         huffman_tree.build_tree(leafs)
 
-        
-
-
-
+        compressed_image = compress(input_sequence, huffman_tree.get_root())
+        write_to_file(file_path, heigth,width, compressed_image, huffman_tree)
+    
     elif args.extract:
         print(f"Extracting {args.file_path}")
+    
     else:
         print("Pass --compress or --decompress flags.")
 

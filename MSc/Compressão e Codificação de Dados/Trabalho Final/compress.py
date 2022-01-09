@@ -4,7 +4,7 @@ from tree import HuffmanTree
 from utils import create_leafs, read_input, pad_representation, unpad_representation
 from utils import change_file_name
 
-def compress(input: bytes, symbol_table: dict) -> str:
+def compress(input: list, symbol_table: dict) -> str:
     compressed_data = ''
     for char in input:
         compressed_data += symbol_table.get(char)
