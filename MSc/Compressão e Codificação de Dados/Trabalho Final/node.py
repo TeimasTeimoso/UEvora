@@ -22,3 +22,4 @@ class Node:
 
     def get_probability(self) -> float:
         return self._probability
+        
