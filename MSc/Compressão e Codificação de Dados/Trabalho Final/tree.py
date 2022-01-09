@@ -46,9 +46,9 @@ class HuffmanTree:
     def get_binary_representation(self, node:Node) -> str:
         if symbol := node.get_symbol():
             # doing it this way because of symolbs, but for images it wont be needed
-            ascii_value: int = ord(symbol)
-            bin_ascii_value: str = format(ascii_value, '08b') # 1 byte
-            node_representation = f"1{bin_ascii_value}"
+            #ascii_value: int = ord(symbol)
+            #bin_ascii_value: str = format(ascii_value, '08b') # 1 byte
+            node_representation = f"1{symbol}"
         else:
             node_representation = '0'
 
