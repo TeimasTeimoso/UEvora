@@ -1,4 +1,5 @@
 from typing import List, Tuple
+from pathlib import Path
 from node import Node
 
 def read_input(file_path) -> bytes:
@@ -19,7 +20,7 @@ def get_occurences(input: bytes) -> dict:
 def compute_probability(occur: int, total_items: int) -> float:
     return occur/total_items
 
-def create_leafs(input: bytes) -> List[Node]:
+def create_leafs(input: list) -> List[Node]:
     total_number_of_chars: int = len(input)
 
     symbol_dict: dict = get_occurences(input)
@@ -63,4 +64,9 @@ def split_encoded_data(unpadded_bitstream: str) -> Tuple[Node, str]:
     rigth_node, remaining_bitstream = split_encoded_data(remaining_bitstream)
 
     return (Node(left=left_node, rigth=rigth_node), remaining_bitstream)
+
+def change_file_name(path: Path, extension: str) -> Path:
+    str_path = str(path)
+    str_path_without_ext = str_path.split('.')[0]
     
+    return Path(str_path_without_ext+'.'+extension)
