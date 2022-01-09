@@ -54,9 +54,10 @@ def unpad_representation(bitstream: str) -> str:
 def split_encoded_data(unpadded_bitstream: str) -> Tuple[Node, str]:
     if unpadded_bitstream[0] == '1':
         next_bit: int = 1
-        bin_symbol: str = unpadded_bitstream[next_bit:next_bit+8]
-        symbol: str = chr(int(bin_symbol, 2))
-        return (Node(symbol=symbol), unpadded_bitstream[next_bit+8:])
+        #bin_symbol: str = unpadded_bitstream[next_bit:next_bit+8]
+        #symbol: str = chr(int(bin_symbol, 2))
+        symbol: str = unpadded_bitstream[next_bit:next_bit+4]
+        return (Node(symbol=symbol), unpadded_bitstream[next_bit+4:])
     else:
         unpadded_bitstream: str = unpadded_bitstream[1:]
 

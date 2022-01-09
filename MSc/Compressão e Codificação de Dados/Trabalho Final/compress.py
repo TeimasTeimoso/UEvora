@@ -3,6 +3,7 @@ from pathlib import Path
 from tree import HuffmanTree
 from utils import create_leafs, read_input, pad_representation, unpad_representation
 from utils import change_file_name
+import numpy as np
 
 def compress_image(input: list, symbol_table: dict) -> str:
     compressed_data = ''
@@ -26,4 +27,3 @@ def write_to_file(path: Path, heigth: int, width: int, compressed_image: str, tr
     with open(path, 'wb') as file:
         content = BitArray(bin=padded_bin_content)
         file.write(content.tobytes())
-
