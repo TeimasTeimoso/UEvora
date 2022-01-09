@@ -14,7 +14,6 @@ def get_occurences(input: bytes) -> dict:
             symbol_dict[char] += 1
         else:
             symbol_dict[char] = 1
-    
     return symbol_dict
 
 def compute_probability(occur: int, total_items: int) -> float:
