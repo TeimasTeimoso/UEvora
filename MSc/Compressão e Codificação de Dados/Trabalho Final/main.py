@@ -25,7 +25,6 @@ if __name__ == '__main__':
         input_sequence = tiles_to_symbols(tiled_image)
 
         leafs = create_leafs(input_sequence)
-        print(len(leafs))
 
         huffman_tree = HuffmanTree()
         huffman_tree.build_tree(leafs)
@@ -40,11 +39,22 @@ if __name__ == '__main__':
         unpadded_compressed_image = unpad_representation(compressed_image)
         heigth, width, remaining_compressed_image = extract_dimensions(unpadded_compressed_image)
 
-        extracted_image = extract(compressed_image, huffman_tree)
+        extracted_image = extract(remaining_compressed_image, huffman_tree)
         two_dimensional_image = join_tiles(extracted_image, heigth, width)
 
         save_extracted_image(file_path, two_dimensional_image)
     else:
         print("Pass --compress or --decompress flags.")
 
-    pass
+    """
+    compressed_image = read_compressed_image('linda_small_bw.huffman')
+    huffman_tree = HuffmanTree()
+
+    unpadded_compressed_image = unpad_representation(compressed_image)
+    heigth, width, remaining_compressed_image = extract_dimensions(unpadded_compressed_image)
+
+    extracted_image = extract(remaining_compressed_image, huffman_tree)
+    two_dimensional_image = join_tiles(extracted_image, heigth, width)
+
+    save_extracted_image('linda_small_bw_v2.huffman', two_dimensional_image)
+    """

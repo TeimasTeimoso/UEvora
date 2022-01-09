@@ -47,9 +47,11 @@ def read_compressed_image(file_path: Path) -> str:
     return representation.bin
 
 def symbol_to_tile(symbol: str) -> np.ndarray:
-    return np.array([[symbol[0], symbol[1]], [symbol[2], symbol[3]]], np.int32)
+    return np.array([[symbol[0], symbol[1]], [symbol[2], symbol[3]]], np.uint8)
 
 def save_extracted_image(file_path: Path, image_array: np.ndarray) -> None:
     file_path = change_file_name(file_path, 'png')
-    image = Image.fromarray(image_array)
+    print(image_array.shape)
+    print(image_array)
+    image = Image.fromarray(image_array * 255)
     image.save(file_path)

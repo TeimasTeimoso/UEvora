@@ -12,9 +12,11 @@ def convert_image_to_black_and_white(opened_image: PngImageFile) -> Image.Image:
 
 def open_image(file_path: Path) -> np.array:
     opened_image: PngImageFile = Image.open(file_path)
-    black_white_image: Image.Image = convert_image_to_black_and_white(opened_image)
+    opened_image.save('im.png')
+    #black_white_image: Image.Image = convert_image_to_black_and_white(opened_image)
+    black_white_image = opened_image
 
-    return np.array(black_white_image).astype(int)
+    return np.array(black_white_image).astype(np.uint8)
 
 # https://stackoverflow.com/questions/16873441/form-a-big-2d-array-from-multiple-smaller-2d-arrays/16873755#16873755
 def split_into_tiles(image: np.ndarray, n_rows: int, n_cols: int) -> np.ndarray:
