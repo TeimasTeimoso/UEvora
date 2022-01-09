@@ -14,7 +14,7 @@ print(len(list(im.getdata())))
 
 im_np = np.array(im).astype(int)
 
-print(im_np)
+print((im_np))
 
 # https://stackoverflow.com/questions/16856788/slice-2d-array-into-smaller-2d-arrays
 def blockshaped(arr, nrows, ncols):
@@ -26,11 +26,16 @@ def blockshaped(arr, nrows, ncols):
     each subblock preserving the "physical" layout of arr.
     """
     h, w = arr.shape
+    print(h)
+    return arr.reshape(h//nrows, nrows, -1, ncols)
+    """
     return (arr.reshape(h//nrows, nrows, -1, ncols)
                .swapaxes(1,2)
                .reshape(-1, nrows, ncols))
+    """
 
 a = blockshaped(im_np, 2, 2)
+print((a))
 print(a[12])
 print(a[12].flatten())
 
