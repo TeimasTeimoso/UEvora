@@ -63,3 +63,4 @@ def split_encoded_data(unpadded_bitstream: str) -> Tuple[Node, str]:
     rigth_node, remaining_bitstream = split_encoded_data(remaining_bitstream)
 
     return (Node(left=left_node, rigth=rigth_node), remaining_bitstream)
+    

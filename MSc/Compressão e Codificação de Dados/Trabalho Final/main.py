@@ -1,5 +1,6 @@
 import argparse
 from pathlib import Path
+from image_processing import open_image, split_into_tiles, tiles_to_symbols
 
 if __name__ == '__main__':
 
@@ -13,7 +14,7 @@ if __name__ == '__main__':
     file_path: Path = Path(args.file_path)
 
     if args.compress:
-        print(f"Compressing {args.file_path}")
+        raw_image = 
     elif args.extract:
         print(f"Extracting {args.file_path}")
     else:
