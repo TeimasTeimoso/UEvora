@@ -53,5 +53,5 @@ def save_extracted_image(file_path: Path, image_array: np.ndarray) -> None:
     file_path = change_file_name(file_path, 'png')
     print(image_array.shape)
     print(image_array)
-    image = Image.fromarray(image_array * 255)
-    image.save(file_path)
+    image = Image.fromarray(image_array*255)
+    image.save('image.pbm')
