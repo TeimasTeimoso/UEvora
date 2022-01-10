@@ -1,8 +1,8 @@
 import argparse
 from pathlib import Path
-from compress import compress_image, write_to_file, open_image, split_into_tiles, tiles_to_symbols
-from extract import extract, extract_dimensions, read_compressed_image, save_extracted_image, join_tiles, unpad_representation
-from tree import HuffmanTree
+from operations.compress import compress_image, write_to_file, open_image, split_into_tiles, tiles_to_symbols
+from operations.extract import extract, extract_dimensions, read_compressed_image, save_extracted_image, join_tiles, unpad_representation
+from data_classes.tree import HuffmanTree
 
 if __name__ == '__main__':
 
@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
         tiled_image = split_into_tiles(raw_image, 2, 2)
         input_sequence = tiles_to_symbols(tiled_image)
-        
+
         huffman_tree = HuffmanTree()
         huffman_tree.build_tree(input_sequence)
 

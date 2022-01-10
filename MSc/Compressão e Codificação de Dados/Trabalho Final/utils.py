@@ -1,6 +1,5 @@
-from typing import List, Tuple
 from pathlib import Path
-from node import Node
+from data_classes.node import Node
 
 def get_occurences(input: bytes) -> dict:
     symbol_dict: dict = {}

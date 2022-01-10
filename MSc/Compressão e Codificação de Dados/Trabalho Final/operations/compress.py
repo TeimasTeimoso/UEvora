@@ -3,7 +3,7 @@ from PIL import Image
 from bitstring import BitArray
 from pathlib import Path
 from typing import List
-from tree import HuffmanTree
+from data_classes.tree import HuffmanTree
 from utils import change_file_name
 import numpy as np
 
@@ -13,7 +13,7 @@ def convert_image_to_black_and_white(opened_image: PngImageFile) -> Image.Image:
 def open_image(file_path: Path) -> np.array:
     opened_image: PngImageFile = Image.open(file_path)
     opened_image: Image = convert_image_to_black_and_white(opened_image)
-    
+
     return np.array(opened_image).astype(np.uint8)
 
 def write_to_file(path: Path, heigth: int, width: int, compressed_image: str, tree: HuffmanTree) -> None:

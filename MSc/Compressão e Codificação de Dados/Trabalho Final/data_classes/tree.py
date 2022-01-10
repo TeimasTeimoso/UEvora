@@ -1,6 +1,6 @@
 from typing import List
 from operator import attrgetter
-from node import Node
+from data_classes.node import Node
 from utils import get_occurences, compute_probability
 
 class HuffmanTree:
@@ -40,7 +40,6 @@ class HuffmanTree:
         
         if symbol := node.get_symbol():
             self.store_codes(symbol, computed_code)
-            print(f"symbol: {symbol} || code: {computed_code}")
 
     def store_codes(self, symbol: str, computed_code: str) -> None:
         self._symbol_table[symbol] = computed_code

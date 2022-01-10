@@ -4,8 +4,8 @@ from typing import Tuple
 from bitstring import BitArray
 import numpy as np
 from PIL import Image
-from tree import HuffmanTree
-from node import Node
+from data_classes.tree import HuffmanTree
+from data_classes.node import Node
 
 def read_compressed_image(file_path: Path) -> str:
     representation = BitArray(filename=file_path)
@@ -56,8 +56,6 @@ def symbol_to_tile(symbol: str) -> np.ndarray:
 
 def save_extracted_image(file_path: Path, image_array: np.ndarray) -> None:
     file_path = change_file_name(file_path, 'pbm')
-    print(image_array.shape)
-    print(image_array)
     image = Image.fromarray(image_array * 255)
     image.save(file_path)
 
@@ -65,9 +63,6 @@ def extract(unpadded_bitstream: str, huff_tree: HuffmanTree) -> np.ndarray:
     tree_root, encoded_content = split_encoded_data(unpadded_bitstream)
 
     huff_tree.compute_codes(tree_root, '')
-
-    print("Decode symbols")
-    print(huff_tree._symbol_table)
 
     decoded_message = []
     current_node = tree_root
