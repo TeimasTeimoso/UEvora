@@ -57,7 +57,7 @@ def tiles_to_symbols(tiles_array: np.ndarray) -> List[str]:
     return input_sequence
 
 """
-[3 bits with number of tailling 0 | Number of leading 0s | 11 bits heigth | 11 bits width | content]
+[3 bits with number of tailling 0 | Number of leading 0s | 11 bits heigth | 11 bits width | tree | content]
 """
 def pad_representation(binary_representation: str) -> str:
     length_without_padding: int = len(binary_representation) + 3
