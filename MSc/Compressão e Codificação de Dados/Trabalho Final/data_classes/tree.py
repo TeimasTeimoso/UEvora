@@ -1,6 +1,7 @@
-from os import read
+from typing import List
 from operator import attrgetter
-from node import Node
+from data_classes.node import Node
+from utils import get_occurences, compute_probability
 
 class HuffmanTree:
     def __init__(self) -> None:
@@ -13,7 +14,8 @@ class HuffmanTree:
     def get_root(self) -> Node:
         return self._root
 
-    def build_tree(self, not_yet_processed_nodes: list):
+    def build_tree(self, input_sequence: list):
+        not_yet_processed_nodes: list[Node] = self.create_leafs(input_sequence)
 
         while len(not_yet_processed_nodes) > 1:
             sorted_probabilities: list = sorted(not_yet_processed_nodes, key=attrgetter('_probability'))
@@ -38,17 +40,13 @@ class HuffmanTree:
         
         if symbol := node.get_symbol():
             self.store_codes(symbol, computed_code)
-            print(f"symbol: {symbol} || code: {computed_code}")
 
     def store_codes(self, symbol: str, computed_code: str) -> None:
         self._symbol_table[symbol] = computed_code
 
     def get_binary_representation(self, node:Node) -> str:
         if symbol := node.get_symbol():
-            # doing it this way because of symolbs, but for images it wont be needed
-            ascii_value: int = ord(symbol)
-            bin_ascii_value: str = format(ascii_value, '08b') # 1 byte
-            node_representation = f"1{bin_ascii_value}"
+            node_representation = f"1{symbol}"
         else:
             node_representation = '0'
 
@@ -58,6 +56,20 @@ class HuffmanTree:
             node_representation = node_representation + self.get_binary_representation(rigth_node)
 
         return node_representation
+
+    @staticmethod
+    def create_leafs(input: list) -> List[Node]:
+        total_number_of_chars: int = len(input)
+
+        symbol_dict: dict = get_occurences(input)
+        leafs_list: list = []
+
+        for symbol in symbol_dict.keys():
+            occurrences: int = symbol_dict.get(symbol)
+            leafs_list.append(Node(symbol=symbol, 
+                                probability=compute_probability(occurrences, total_number_of_chars)))
+
+        return leafs_list
 
     @staticmethod
     def compute_new_probability(left_node: Node, right_node: Node) -> float:
