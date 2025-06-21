@@ -1,6 +1,6 @@
 # Programação I
 
-## Objetivo
+## Objetivos
 No final desta unidade curricular os alunos deverão ser capazes de:
 - aplicar o processo de desenvolvimento de um programa: compreender problema, conceber o algoritmo, implementar o algoritmo e testar o código
 - escolher as estruturas de controlo mais adequadas, definindo quais as condições de seleção e repetição
